@@ -1,16 +1,17 @@
 import React, {Fragment, useState} from 'react'
-import {Button,Table} from 'react-bootstrap'
+import {Table} from 'react-bootstrap'
 import Calendar from 'react-calendar'
 import Axios from "axios";
 function Tables() {
     const [row,setRows]=useState();
+    const [Data,setData]=useState()
 const TableChangeAdd=()=>{
       let rows=row
     rows.push('new rows')
     setRows({row:rows})
 }
 const TableChangeDelete=()=>{
-        let data=row;
+        let data=row
         data.splice(row.index,1)
     setRows({row})
 }
@@ -31,30 +32,30 @@ const SaveTable=()=>{
     return(
         <Fragment>
 <div>
-<Button onChange={TableChangeAdd} id="addBtn" style={{
+<button  onClick={TableChangeAdd} id="addBtn" style={{
     padding:10,
     backgroundColor:"green",
     color:"white",
 
-}}>+</Button>
-<Button
-    onChange={TableChangeDelete}
+}}>+</button>
+<button
+    onClick={TableChangeDelete}
 style={{
     padding:10,
     backgroundColor:"green",
     color:"white",
     marginLeft:5
 }}
->-</Button>
-<Button
-    onChange={SaveTable}
+>-</button>
+<button
+    onClick={SaveTable}
     style={{
         padding:10,
         backgroundColor:"green",
         color:"white",
         marginLeft:5
     }}
->save</Button>
+>save</button>
 </div>
 
 
@@ -86,8 +87,8 @@ style={{
                         <td style={{textAlign:"center"}}>۱۳۹۲</td>
                         <td style={{textAlign:"center"}}>
                             <Calendar
-                                value={Dates}
-                                onChange={setDates}
+                                value={Data}
+                                onChange={setData}
                                 inputPlaceholder="تاریخ را وارد کنید"
 
                             />
