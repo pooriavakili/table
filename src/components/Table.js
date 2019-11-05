@@ -3,7 +3,6 @@ import {Button,Table} from 'react-bootstrap'
 import Calendar from 'react-calendar'
 import Axios from "axios";
 function Tables() {
-    const [Dates,setDates]=useState()
     const [row,setRows]=useState();
 const TableChangeAdd=()=>{
       let rows=row
