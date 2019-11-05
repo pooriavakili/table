@@ -6,14 +6,14 @@ function Tables() {
     const [row,setRows]=useState();
     const [Data,setData]=useState()
 const TableChangeAdd=()=>{
-      let rows=row
-    rows.push('new rows')
-    setRows({row:rows})
+      let row=new Array()
+    row.push('new rows')
+    setRows({row:row})
 }
 const TableChangeDelete=()=>{
-        let data=row
-        data.splice(row.index,1)
-    setRows({row})
+        let data= new Array()
+        data.splice(data.index,1)
+    setRows({data})
 }
 const SaveTable=()=>{
     const call = async ({baseURL = "https://jsonplaceholder.typicode.com/"}) => {
@@ -48,6 +48,7 @@ style={{
 }}
 >-</button>
 <button
+    id={row}
     onClick={SaveTable}
     style={{
         padding:10,
