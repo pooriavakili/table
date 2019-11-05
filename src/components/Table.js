@@ -1,19 +1,32 @@
 import React, {Fragment, useState} from 'react'
 import {Button,Table} from 'react-bootstrap'
 import Calendar from 'react-calendar'
+import Axios from "axios";
 function Tables() {
     const [Dates,setDates]=useState()
     const [row,setRows]=useState();
-    const [Data,setData]=useState()
 const TableChangeAdd=()=>{
       let rows=row
     rows.push('new rows')
     setRows({row:rows})
 }
 const TableChangeDelete=()=>{
-        let data=Data;
+        let data=row;
         data.splice(row.index,1)
-    setData({Data})
+    setRows({row})
+}
+const SaveTable=()=>{
+    const call = async ({baseURL = "https://jsonplaceholder.typicode.com/"}) => {
+        const data = await Axios.post({
+            baseURl: baseURL,
+        }).catch({
+                response: {call},
+            }
+        ).catch(err => {
+            throw err
+        })
+        return data
+    }
 }
 
     return(
@@ -35,6 +48,7 @@ style={{
 }}
 >-</Button>
 <Button
+    onChange={SaveTable}
     style={{
         padding:10,
         backgroundColor:"green",
@@ -53,14 +67,17 @@ style={{
                     borderStyle:"solid",
                     borderColor:"black",
                     width:"70%"
-                }} striped bordered hover size="sm">
+                }} striped bordered hover
+                       value={row}
+
+                       size="sm">
                     <thead>
                     <tr>
-                        <th>نام </th>
-                        <th>نام خانوادگی </th>
-                        <th>سال ورود </th>
-                        <th>تاریخ  </th>
-                        <th>شهریه</th>
+                        <th >نام </th>
+                        <th >نام خانوادگی </th>
+                        <th >سال ورود </th>
+                        <th >تاریخ  </th>
+                        <th >شهریه</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -79,17 +96,7 @@ style={{
                         </td>
                         <td style={{textAlign:"center"}}>500/000/000</td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td ></td>
-                        <td></td>
-                    </tr>
+
                     </tbody>
                 </Table>
             </div>
