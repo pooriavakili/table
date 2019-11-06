@@ -16,17 +16,22 @@ const TableChangeDelete=()=>{
     setRows({data})
 }
 const SaveTable=()=>{
-    const call = async ({baseURL = "https://jsonplaceholder.typicode.com/"}) => {
-        const data = await Axios.post({
-            baseURl: baseURL,
-        }).catch({
-                response: {call},
-            }
-        ).catch(err => {
-            throw err
-        })
-        return data
-    }
+const Call=async ({baseUrl="AIzaSyBUJnbE1PwRO7b85aaXyOA9tOlItVEejTk"})=>{
+    const data=await Axios.post({
+    url:baseUrl
+    }).catch({
+        response:Call
+    }).catch(err=>{
+        throw err
+    })
+    return data
+}
+}
+const Jame=(row)=>{
+
+    row.forEach((item,index)=>{
+        return row[index]=item+1
+    })
 }
 
     return(
@@ -63,7 +68,9 @@ style={{
             <div style={{
                 marginTop:20
             }}>
-                <Table style={{
+                <Table
+                    row={Jame}
+                    style={{
                     borderWidth:4,
                     borderStyle:"solid",
                     borderColor:"black",
@@ -74,7 +81,8 @@ style={{
                        size="sm">
                     <thead>
                     <tr>
-                        <th >نام </th>
+                        <th
+                        >نام </th>
                         <th >نام خانوادگی </th>
                         <th >سال ورود </th>
                         <th >تاریخ  </th>
@@ -83,7 +91,7 @@ style={{
                     </thead>
                     <tbody>
                     <tr>
-                        <td style={{textAlign:"center"}}>پوریا</td>
+                        <td  style={{textAlign:"center"}}>پوریا</td>
                         <td style={{textAlign:"center"}}>وکیلی</td>
                         <td style={{textAlign:"center"}}>۱۳۹۲</td>
                         <td style={{textAlign:"center"}}>
