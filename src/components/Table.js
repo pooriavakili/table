@@ -2,18 +2,19 @@ import React, {Fragment, useState} from 'react'
 import {Table} from 'react-bootstrap'
 import Calendar from 'react-calendar'
 import Axios from "axios";
+import User from "./User";
 function Tables() {
-    const [row,setRows]=useState();
+    const [row,setRows]=useState()
     const [Data,setData]=useState()
 const TableChangeAdd=()=>{
-      let row=new Array()
-    row.push('new rows')
-    setRows({row:row})
+setRows({
+    row:[row,<User/>]
+})
 }
 const TableChangeDelete=()=>{
-        let data= new Array()
-        data.splice(data.index,1)
-    setRows({data})
+    setRows({
+        row:row.splice(-1,1)
+    })
 }
 const SaveTable=()=>{
 const Call=async ({baseUrl="AIzaSyBUJnbE1PwRO7b85aaXyOA9tOlItVEejTk"})=>{
@@ -27,13 +28,6 @@ const Call=async ({baseUrl="AIzaSyBUJnbE1PwRO7b85aaXyOA9tOlItVEejTk"})=>{
     return data
 }
 }
-const Jame=(row)=>{
-
-    row.forEach((item,index)=>{
-        return row[index]=item+1
-    })
-}
-
     return(
         <Fragment>
 <div>
@@ -69,7 +63,7 @@ style={{
                 marginTop:20
             }}>
                 <Table
-                    row={Jame}
+
                     style={{
                     borderWidth:4,
                     borderStyle:"solid",
