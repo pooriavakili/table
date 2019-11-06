@@ -30,7 +30,7 @@ import User from "./User";
          }
              const TableChangeDelete = () => {
                  this.setState({
-                     row: this.state.row.splice(-1, 1)
+                     row: this.state.row.splice(-1, 0)
                  })
              }
              return (
