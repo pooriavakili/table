@@ -1,110 +1,80 @@
-import React, {Fragment, useState} from 'react'
-import {Table} from 'react-bootstrap'
-import Calendar from 'react-calendar'
+import React, {Fragment,Component} from 'react'
 import Axios from "axios";
 import User from "./User";
-function Tables() {
-    const [row,setRows]=useState()
-    const [Data,setData]=useState()
-const TableChangeAdd=()=>{
-setRows({
-    row:[row,<User/>]
-})
-}
-const TableChangeDelete=()=>{
-    setRows({
-        row:row.splice(-1,1)
-    })
-}
-const SaveTable=()=>{
-const Call=async ({baseUrl="AIzaSyBUJnbE1PwRO7b85aaXyOA9tOlItVEejTk"})=>{
-    const data=await Axios.post({
-    url:baseUrl
-    }).catch({
-        response:Call
-    }).catch(err=>{
-        throw err
-    })
-    return data
-}
-}
-    return(
-        <Fragment>
-<div>
-<button  onClick={TableChangeAdd} id="addBtn" style={{
-    padding:10,
-    backgroundColor:"green",
-    color:"white",
-
-}}>+</button>
-<button
-    onClick={TableChangeDelete}
-style={{
-    padding:10,
-    backgroundColor:"green",
-    color:"white",
-    marginLeft:5
-}}
->-</button>
-<button
-    id={row}
-    onClick={SaveTable}
-    style={{
-        padding:10,
-        backgroundColor:"green",
-        color:"white",
-        marginLeft:5
-    }}
->save</button>
-</div>
+ export default class Table extends Component {
+     constructor(props){
+         super(props)
+             this.state = {
+             row: []
+         }
+     }
 
 
-            <div style={{
-                marginTop:20
-            }}>
-                <Table
+     render() {
+         const TableChangeAdd = () => {
+             this.setState({
+                 row: [...this.state.row, <User/>]
+             })
+         }
+         const SaveTable = () => {
+             const Call = async ({baseUrl = "AIzaSyBUJnbE1PwRO7b85aaXyOA9tOlItVEejTk"}) => {
+                 const data = await Axios.post({
+                     url: baseUrl
+                 }).catch({
+                     response: Call
+                 }).catch(err => {
+                     throw err
+                 })
+                 return data
+             }
+         }
+             const TableChangeDelete = () => {
+                 this.setState({
+                     row: this.state.row.splice(-1, 1)
+                 })
+             }
+             return (
+                 <Fragment>
+                     <div>
+                         <button onClick={TableChangeAdd} id="addBtn" style={{
+                             padding: 10,
+                             backgroundColor: "green",
+                             color: "white",
 
-                    style={{
-                    borderWidth:4,
-                    borderStyle:"solid",
-                    borderColor:"black",
-                    width:"70%"
-                }} striped bordered hover
-                       value={row}
+                         }}>+
+                         </button>
+                         <button
+                             onClick={TableChangeDelete}
+                             style={{
+                                 padding: 10,
+                                 backgroundColor: "green",
+                                 color: "white",
+                                 marginLeft: 5
+                             }}
+                         >-
+                         </button>
+                         <button
 
-                       size="sm">
-                    <thead>
-                    <tr>
-                        <th
-                        >نام </th>
-                        <th >نام خانوادگی </th>
-                        <th >سال ورود </th>
-                        <th >تاریخ  </th>
-                        <th >شهریه</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td  style={{textAlign:"center"}}>پوریا</td>
-                        <td style={{textAlign:"center"}}>وکیلی</td>
-                        <td style={{textAlign:"center"}}>۱۳۹۲</td>
-                        <td style={{textAlign:"center"}}>
-                            <Calendar
-                                value={Data}
-                                onChange={setData}
-                                inputPlaceholder="تاریخ را وارد کنید"
+                             onClick={SaveTable}
+                             style={{
+                                 padding: 10,
+                                 backgroundColor: "green",
+                                 color: "white",
+                                 marginLeft: 5
+                             }}
+                         >save
+                         </button>
+                         {this.state.row}
+                     </div>
 
-                            />
 
-                        </td>
-                        <td style={{textAlign:"center"}}>500/000/000</td>
-                    </tr>
+                     <div style={{
+                         marginTop: 20
+                     }}>
+                         <User/>
+                     </div>
+                 </Fragment>
+             )
+         }
 
-                    </tbody>
-                </Table>
-            </div>
-        </Fragment>
-    )
-
-}
-export default Tables
+ }
