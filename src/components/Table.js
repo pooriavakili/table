@@ -8,8 +8,6 @@ import User from "./User";
              row: []
          }
      }
-
-
      render() {
          const TableChangeAdd = () => {
              this.setState({
@@ -17,22 +15,12 @@ import User from "./User";
              })
          }
          const SaveTable = () => {
-             const Call = async ({baseUrl = "AIzaSyBUJnbE1PwRO7b85aaXyOA9tOlItVEejTk"}) => {
-                 const data = await Axios.post({
-                     url: baseUrl
-                 }).catch({
-                     response: Call
-                 }).catch(err => {
-                     throw err
-                 })
-                 return data
-             }
-         }
              const TableChangeDelete = () => {
                  this.setState({
                      row: this.state.row.splice(-1, 0)
                  })
              }
+            }
              return (
                  <Fragment>
                      <div>
@@ -71,7 +59,7 @@ import User from "./User";
                      <div style={{
                          marginTop: 20
                      }}>
-                         <User/>
+                         <User />
                      </div>
                  </Fragment>
              )
